@@ -46,6 +46,7 @@ My first programming teacher in college always said:
 <br>
 both what you do and why you did it!  If you can't figure out 6 months from now, then nobody can."
 <br>
+<br>
 Refer to run_analysis.R for further details.
 
 
