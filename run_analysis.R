@@ -1,37 +1,48 @@
-#Course assignment for Getting and Cleaning Data
-
-#per assignment instructions:  "can be run as long as the Samsung data is in your working directory"
+#per assignment instructions this script:  "can be run as long as the Samsung data is in your working directory"
 #this could mean any of several things...but I'll assume if the root directory of the unzipped data exists
-#then all the data is there
+#then all the data is there...also I'll just download the data if needed.
+
+
+#this data was downloaded multiple times, and on several occasions the file was corrupted,
+#this helper function makes immediately following code a bit cleaner
+unzipfunction <- function(zipfile){
+  print(paste("attempting to extract data from: ", zipfile))
+  tryCatch(unzip(datafilename), 
+           warning = function(w) {print(w);}, 
+           error = function(e) {print(e);}
+  )
+  if(!file.exists(dirname)){stop(paste("could not unzip: ", zipfile))}
+}
+
 
 datafilename <- "getdata-projectfiles-UCI HAR Dataset.zip"
 wd <- getwd()
-dirname <- "UCI HAR Dataset"   #name of unzipped dataset
+dirname <- "UCI HAR Dataset"   #root directory of unzipped dataset
 if(substr(wd, nchar(wd)-(nchar(dirname)-1), nchar(wd)) == dirname){
   
   #take no action, working directory already set to the directory of uzipped data
   
-} else if(file.exists(dirname)){
+} else if(file.exists(dirname)) {
   
   #current working directory is the parent of the unzipped data
   print(paste("setting working directory to: ", getwd(), "/", dirname, sep = ""))
   setwd(dirname)
   
-} else if(file.exists(datafilename)){
+} else if(file.exists(datafilename)) {
   
   #the data is here  but needs to be unzipped
-  print(paste("attempting to extract data from: ", datafilename))
-  tryCatch(unzip(datafilename), 
-           warning = function(w) {print(w);}, 
-           error = function(e) {print(e);}
-  )
-  if(!file.exists(dirname)){stop(paste("could not unzip: ", datafilename))}
+  unzipfunction(datafilename)
   
   print(paste("setting working directory to: ", getwd(), "/", dirname, sep = ""))
   setwd(dirname)
   
 } else {
-  stop("no data found...")
+  
+  #download and extract the data
+  download.file(url="https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip",
+                destfile = datafilename)
+  unzipfunction(datafilename)
+  setwd(dirname)
 }
 
 
@@ -182,8 +193,7 @@ print("data directory found, start processing")
   # # #all tables return [1] 7352  128 -- this matches the subject_train, x_train, and activity_ids_train
   # # #variables created earlier...but still not sure if this is the raw data or subsets that can be ignored...
   # # #research pays off...the description in the README file appears to explain them as raw data...
-  # # #and the project instructions don't mention these files...
-  # # #and the discussion here says we don't need them:  https://class.coursera.org/getdata-031/forum/thread?thread_id=28
+  # # discussion here says we don't need them:  https://class.coursera.org/getdata-031/forum/thread?thread_id=28
   # # 
   # # rm(dataframelist)
   # # rm(filesWithPath)
@@ -356,7 +366,9 @@ setnames(meansbyactsub,
 #meansbyactsub is now in tidy form with well named columns, one variable per column,
 #and one observation per row
 #output the tidy table
-write.table(meansbyactsub, "tidy_data_set.txt",  row.name=FALSE) 
+write.table(meansbyactsub, "tidy_data_set.txt",  row.name=FALSE)
+
+print(paste("tidy dataset stored here:", getwd(), "/", "tidy_data_set.txt"))
 
 rm(list=ls())
 
