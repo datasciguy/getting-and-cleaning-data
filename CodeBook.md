@@ -27,7 +27,7 @@ The second dataset is stored in the train and test directories.
 <br>
 This second dataset provides the basis for this project.
 
-Otherwise the data is aptly described in the README.txt and features_info.txt files,
+Otherwise the data is aptly described in the README.txt and features_info.txt files supplied with the data,
 <br>
 refer to these files for further details.
 <br>
