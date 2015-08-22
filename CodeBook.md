@@ -1,5 +1,4 @@
 The goal is to prepare tidy data that can be used for later analysis.
-
 <br>
 <br>
 Basic algorithm for this project script (run_analysis.R):
@@ -11,7 +10,6 @@ Basic algorithm for this project script (run_analysis.R):
 3. merge/bind various tables to satisfy objectives of the final dataset
 <br>
 <br>
-
 Obtain data for the project here:
 <br>
 (https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip)
@@ -32,7 +30,8 @@ This second dataset provides the basis for this project.
 Otherwise the data is aptly described in the README.txt and features_info.txt files,
 <br>
 refer to these files for further details.
-
+<br>
+<br>
 The run_analysis.R scipt is embeddd with verbose comments paired with screen outputs
 <br>
 to identify thought processes used to develop the code, analyze the data,
