@@ -1,4 +1,13 @@
+
 Getting and Cleaning Data Course Project
+<br>
+<br>
+POST SUBMISSION EDIT:  To the peer reviewers of this assignment,<br>
+I'll save you some time and tell you that lines 218 & 222<br>
+are where things went wrong -- I failed to realize/notice the<br>
+merge command re-orders the rows of the resulting table...<br>
+<br>
+D'OH!!!!
 <br>
 <br>
 Purpose:
@@ -45,7 +54,6 @@ screen output is paired with the script comments and designed to verify each ste
 the analysis along the way.
 <br>
 Read CodeBook.md and the run_analysis.R for further details.
-
 
 
 
